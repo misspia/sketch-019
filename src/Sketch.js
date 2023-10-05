@@ -30,8 +30,8 @@ export class Sketch extends SketchManager {
   }
 
   init() {
-    this.setClearColor(0x444444)
-    this.setCameraPos(0, 1, 7)
+    this.setClearColor(0x26b3f0)
+    this.setCameraPos(0, 3, 10)
     this.lookAt(0, 0, 0)
     this.initAudio({
       fftSize: this.fftSize,
@@ -42,7 +42,7 @@ export class Sketch extends SketchManager {
 
     this.crosswalk.center()
 
-    this.scene.add(this.testGraph.group)
+    // this.scene.add(this.testGraph.group)
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     this.scene.add(this.crosswalk.group)

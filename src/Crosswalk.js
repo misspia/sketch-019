@@ -6,6 +6,7 @@ const LINE_WIDTH = 1;
 const LINE_HEIGHT = 3;
 const LINE_X_GAP = 1;
 
+// https://www.pinterest.ca/pin/516295544785518297/
 export class Crosswalk {
   constructor(context) {
     this.context = context
@@ -48,6 +49,6 @@ export class Crosswalk {
     )
   }
   update() {
-    this.lines.forEach((line) => line.update())
+    this.lines.forEach((line) => line.update(100))
   }
 }
