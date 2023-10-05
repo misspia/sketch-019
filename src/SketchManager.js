@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { AudioManager } from './audio';
 
 
@@ -25,10 +26,7 @@ export class SketchManager extends THREE.EventDispatcher {
     this.scene = {};
     this.camera = {};
 
-    this.scene = new THREE.Scene();
-    if (options.fog) {
-      this.scene.fog = options.fog;
-    }
+    
     const aspectRatio = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(75, aspectRatio, options.cameraNear, options.cameraFar);
     this.camera.position.set(0, 1, -3);
@@ -38,16 +36,17 @@ export class SketchManager extends THREE.EventDispatcher {
       canvas: this.canvas,
       antialias: true,
       alpha: false,
-      stencil: false
     });
-    
-    ////////////////////////////////////////////////////////
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
-    ////////////////////////////////////////////////////////
+    this.renderer.shadowMap.enabled = true;
+
+    this.scene = new THREE.Scene();
+    if (options.fog) {
+      this.scene.fog = options.fog;
+    }
+
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setClearColor(0xffdddd);
-    // const dpr = Math.min(1.5, window.devicePixelRatio);
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
     window.scene = this.scene;
