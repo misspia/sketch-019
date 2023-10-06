@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import utils from './utils'
+import { utils } from './utils'
 
 export class LightsManager {
   constructor() {

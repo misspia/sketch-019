@@ -5,6 +5,7 @@ import { audioMeta, BeatManager } from './audio'
 import { LightsManager } from './LightsManager'
 import { Block } from './Block'
 import { Crosswalk } from './Crosswalk'
+import { Clouds } from './Clouds'
 
 
 export class Sketch extends SketchManager {
@@ -27,11 +28,12 @@ export class Sketch extends SketchManager {
     this.lights = new LightsManager()
     this.block = new Block()
     this.crosswalk = new Crosswalk(this)
+    this.clouds = new Clouds(this)
   }
 
   init() {
     this.setClearColor(0x26b3f0)
-    this.setCameraPos(0, 3, 10)
+    this.setCameraPos(0, 3, 12)
     this.lookAt(0, 0, 0)
     this.initAudio({
       fftSize: this.fftSize,
@@ -46,6 +48,7 @@ export class Sketch extends SketchManager {
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     this.scene.add(this.crosswalk.group)
+    this.scene.add(this.clouds.group)
   }
 
   draw() {
@@ -55,6 +58,7 @@ export class Sketch extends SketchManager {
     this.audio.getByteFrequencyData();
     this.beatManager.update()
     this.crosswalk.update()
+    this.clouds.update()
 
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)

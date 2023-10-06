@@ -23,6 +23,7 @@ export class CrosswalkLine {
     })
     this.group = new THREE.Mesh(this.geometry, this.material)
     this.rotation.x = utils.toRadians(-90)
+    this.group.receiveShadow = true
   }
 
   get position() {
