@@ -1,22 +1,26 @@
 import * as THREE from 'three'
 import { utils } from './utils'
 
-// https://www.google.com/search?q=cute+3d+cloud&tbm=isch&ved=2ahUKEwiU7OSn092BAxWrF2IAHbmcA2IQ2-cCegQIABAA&oq=cute+3d+cloud&gs_lcp=CgNpbWcQAzIFCAAQgAQ6BAgjECc6BwgAEIoFEEM6BggAEAgQHjoICAAQgAQQsQM6CggAEIoFELEDEENQ4wdYnhtgohxoAHAAeACAAVaIAfQHkgECMTSYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=PgMeZZTVAauviLMPubmOkAY&bih=1166&biw=2327&rlz=1C1CHBF_enNL926NL926#imgrc=gKUqg_V0_q2g_M
+const MIN_X = -6;
+const MAX_X = 6;
+const MIN_Y = 5;
+const MAX_Y = 8;
+const MIN_Z = -5;
+const MAX_Z = 5;
 export class Cloud {
-  constructor() {
-    this.geometry = this.generateGeometry()
-    this.material = new THREE.MeshToonMaterial({
-      color: 0xffffff,
-    })
-    this.group = new THREE.Mesh(this.geometry, this.material)
+  constructor(freqIndex = 0) {
+    this.freqIndex = freqIndex
+    this.position = new THREE.Vector3(
+      utils.randomFloatBetween(MIN_X, MAX_X),  
+      utils.randomFloatBetween(MIN_Y, MAX_Y),  
+      utils.randomFloatBetween(MIN_Z, MAX_Z),  
+    )
+    this.size = utils.randomFloatBetween(1, 5)
+    this.alpha = utils.randomFloatBetween(0.8, 1)
+    this.yMin = utils.randomFloatBetween(0, 1)
+    this.yMax = utils.randomFloatBetween(2, 3)
   }
-  get position() {
-    return this.group.position
-  }
-  generateGeometry() {
-    return new THREE.IcosahedronGeometry(1, 5);
-  }
-
+ 
   update() {
 
   }

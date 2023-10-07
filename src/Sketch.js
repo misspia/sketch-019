@@ -7,7 +7,6 @@ import { Block } from './Block'
 import { Crosswalk } from './Crosswalk'
 import { Clouds } from './Clouds'
 
-
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
     super(canvas, audioElement)
@@ -40,7 +39,7 @@ export class Sketch extends SketchManager {
       dataLength: this.numFrequencyNodes,
     });
     this.audio.setSmoothingTimeConstant(0.85);
-    this.audio.volume(0)
+    this.audio.volume(1)
 
     this.crosswalk.center()
 
@@ -48,6 +47,7 @@ export class Sketch extends SketchManager {
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     this.scene.add(this.crosswalk.group)
+    console.debug(this.clouds.group)
     this.scene.add(this.clouds.group)
   }
 

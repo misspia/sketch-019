@@ -34,8 +34,8 @@ export class SketchManager extends THREE.EventDispatcher {
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
-      antialias: true,
-      alpha: false,
+      // antialias: true,
+      alpha: true,
     });
     this.renderer.shadowMap.enabled = true;
 
