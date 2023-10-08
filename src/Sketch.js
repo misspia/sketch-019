@@ -15,7 +15,7 @@ export class Sketch extends SketchManager {
     this.numFrequencyNodes = this.fftSize / 2;
     this.spectrumStart = {
       bass: 0,
-      midrange: 5,
+      midrange: 10,
       highrange: 70,
     }
     this.testGraph = new TestGraph({
@@ -32,14 +32,15 @@ export class Sketch extends SketchManager {
 
   init() {
     this.setClearColor(0x26b3f0)
-    this.setCameraPos(0, 3, 12)
+    this.setCameraPos(11, 3, 5)
+    // this.setCameraPos(-3, 0, 8)
     this.lookAt(0, 0, 0)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,
     });
     this.audio.setSmoothingTimeConstant(0.85);
-    this.audio.volume(1)
+    this.audio.volume(0)
 
     this.crosswalk.center()
 
@@ -47,7 +48,6 @@ export class Sketch extends SketchManager {
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     this.scene.add(this.crosswalk.group)
-    console.debug(this.clouds.group)
     this.scene.add(this.clouds.group)
   }
 

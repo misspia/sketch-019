@@ -5,14 +5,7 @@ import { Assets } from './assets'
 import fragmentShader from './shaders/cloud.frag'
 import vertexShader from './shaders/cloud.vert'
 
-const NUM_CLOUDS = 10;
-
-const MIN_X = -6;
-const MAX_X = 6;
-const MIN_Y = 5;
-const MAX_Y = 8;
-const MIN_Z = -5;
-const MAX_Z = 5;
+const NUM_CLOUDS = 50;
 
 const getPointMultiplier = () => {
   return window.innerHeight / (2.0 * Math.tan(0.5 * 60.0 * Math.PI / 180.0))
@@ -56,6 +49,7 @@ export class Clouds {
     const positions = []
     const alphas = []
     const frequencies = []
+    const side = []
 
     for (let i = 0; i < NUM_CLOUDS; i++) {
       const freqIndex = utils.randomIntBetween(0, this.context.spectrumStart.midrange)
@@ -70,9 +64,11 @@ export class Clouds {
       positions.push(cloud.position.x, cloud.position.y, cloud.position.z)
       alphas.push(cloud.alpha)
       frequencies.push(0)
+      side.push(cloud.positiveSide ? 1 : 0)
     }
     this.geometry.setAttribute('yMin', new THREE.Float32BufferAttribute(yMin, 1))
     this.geometry.setAttribute('yMax', new THREE.Float32BufferAttribute(yMax, 1))
+    this.geometry.setAttribute('isPositiveSide', new THREE.Float32BufferAttribute(side, 1))
   }
 
   update() {

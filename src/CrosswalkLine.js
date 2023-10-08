@@ -1,5 +1,7 @@
 import * as THREE from 'three'
 import { utils } from './utils'
+import vertexShader from './shaders/line.vert'
+import fragmentShader from './shaders/line.frag'
 
 const MIN_X_INCREMENT = 0;
 const MAX_X_INCREMENT = 0.1;
@@ -21,6 +23,13 @@ export class CrosswalkLine {
       side: THREE.FrontSide,
       transparent: true,
     })
+    // this.material = new THREE.RawShaderMaterial({
+    //   vertexShader,
+    //   fragmentShader,
+    //   uniforms: {
+    //     uFreq: { value: 0 }
+    //   }
+    // })
     this.group = new THREE.Mesh(this.geometry, this.material)
     this.rotation.x = utils.toRadians(-90)
     this.group.receiveShadow = true
