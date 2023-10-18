@@ -46,10 +46,6 @@ export class Clouds {
   createClouds() {
     const yMin = []
     const yMax = []
-    const positions = []
-    const alphas = []
-    const frequencies = []
-    const side = []
 
     for (let i = 0; i < NUM_CLOUDS; i++) {
       const freqIndex = utils.randomIntBetween(0, this.context.spectrumStart.midrange)
@@ -61,14 +57,9 @@ export class Clouds {
        */
       yMin.push(cloud.yMin)
       yMax.push(cloud.yMax)
-      positions.push(cloud.position.x, cloud.position.y, cloud.position.z)
-      alphas.push(cloud.alpha)
-      frequencies.push(0)
-      side.push(cloud.positiveSide ? 1 : 0)
     }
     this.geometry.setAttribute('yMin', new THREE.Float32BufferAttribute(yMin, 1))
     this.geometry.setAttribute('yMax', new THREE.Float32BufferAttribute(yMax, 1))
-    this.geometry.setAttribute('isPositiveSide', new THREE.Float32BufferAttribute(side, 1))
   }
 
   update() {

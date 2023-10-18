@@ -10,13 +10,11 @@ attribute float alpha;
 attribute float freq;
 attribute float yMin;
 attribute float yMax;
-attribute float isPositiveSide;
 
 varying float vAlpha;
 varying float vFreq;
 varying float vYMin;
 varying float vYMax;
-varying float vIsPositiveSide;
 
 void main() {
 
@@ -27,6 +25,4 @@ void main() {
   vFreq = freq;
   vYMin = yMin;
   vYMax = yMax;
-  vIsPositiveSide = isPositiveSide;
-
 }
