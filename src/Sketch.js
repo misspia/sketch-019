@@ -7,6 +7,7 @@ import { Block } from './Block'
 import { Crosswalk } from './Crosswalk'
 import { Clouds } from './Clouds'
 import { Sand } from './Sand'
+import { Water } from './Water'
 
 // https://www.pinterest.ca/pin/516295544797671431/
 export class Sketch extends SketchManager {
@@ -31,11 +32,12 @@ export class Sketch extends SketchManager {
     this.crosswalk = new Crosswalk(this)
     this.clouds = new Clouds(this)
     this.sand = new Sand(this)
+    this.water = new Water(this)
   }
 
   init() {
     this.setClearColor(0xeeeeee)
-    this.setCameraPos(11, 3, 5)
+    this.setCameraPos(11, 3, 3)
     // this.setCameraPos(-3, 0, 8)
     this.lookAt(0, 0, 0)
     this.initAudio({
@@ -53,6 +55,7 @@ export class Sketch extends SketchManager {
     this.scene.add(this.crosswalk.group)
     this.scene.add(this.clouds.group)
     this.scene.add(this.sand.group)
+    this.scene.add(this.water.group)
   }
 
   draw() {

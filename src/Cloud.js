@@ -30,7 +30,7 @@ export class Cloud {
     this.minXIncrement = utils.randomFloatBetween(0.001, 0.001)
     this.maxXIncrement = utils.randomFloatBetween(0.01, 0.05)
     this.minZIncrement = utils.randomFloatBetween(0.001, 0.001)
-    this.maxZIncrement = utils.randomFloatBetween(0.01, 0.05)
+    this.maxZIncrement = utils.randomFloatBetween(0.002, 0.005)
     this.zIncrementSign = utils.randomBool() ? 1 : -1
   }
  
@@ -53,8 +53,9 @@ export class Cloud {
     /**
      * opacity
      */
+    let positionAlpha = 1;
     if(this.position.x >= UPPER_X_OPACITY_THRESHOLD) {
-      this.alpha = 1 - utils.remap(
+      positionAlpha = 1 - utils.remap(
         UPPER_X_OPACITY_THRESHOLD, 
         MAX_X, 
         0,
@@ -63,7 +64,7 @@ export class Cloud {
       )
     }
     if(this.position.x <= LOWER_X_OPACITY_THRESHOLD) {
-      this.alpha = utils.remap(
+      positionAlpha = utils.remap(
         0,
         LOWER_X_OPACITY_THRESHOLD, 
         0, 
@@ -71,5 +72,7 @@ export class Cloud {
         this.position.x
       )
     }
+    const freqAlpha = utils.remapFreq(0, 0.7, freq)
+    this.alpha = Math.min(freqAlpha, positionAlpha) 
   }
 }

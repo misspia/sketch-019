@@ -18,7 +18,9 @@ float reverseRemapFreq(float min, float max) {
 
 void main() {
     vec2 coords = (gl_PointCoord - 0.5) + 0.5;
-    vec3 color = vec3(0.94, 0.54, 0.64);
+    // vec3 color = vec3(0.94, 0.54, 0.64);
+    // vec3 color = vec3(0.87, 0.27, 0.42);
+    vec3 color = vec3(0.83, 0.15, 0.33);
 
  
     float alpha = vAlpha * (1.0 - length(gl_PointCoord.xy)) * 3.3;
