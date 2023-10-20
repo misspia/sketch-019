@@ -6,12 +6,14 @@ uniform float pointMultiplier;
 
 attribute vec3 position;
 attribute float size;
+attribute float angle;
 attribute float alpha;
 attribute float freq;
 attribute float yMin;
 attribute float yMax;
 
 varying float vAlpha;
+varying float vAngle;
 varying float vFreq;
 varying float vYMin;
 varying float vYMax;
@@ -22,6 +24,7 @@ void main() {
   gl_Position = projectionMatrix * mvPosition;
   gl_PointSize = size * pointMultiplier / gl_Position.w;
   vAlpha = alpha;
+  vAngle = angle;
   vFreq = freq;
   vYMin = yMin;
   vYMax = yMax;

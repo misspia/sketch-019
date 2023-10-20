@@ -1,16 +1,16 @@
 import * as THREE from 'three'
 import { utils } from './utils'
 
-const MIN_X = -10;
-const MAX_X = 5;
-const MIN_Y = 1;
-const MAX_Y = 2;
-const MIN_Z = -4;
-const MAX_Z = 4;
+const MIN_X = -3;
+const MAX_X = 3;
+const MIN_Y = 0;
+const MAX_Y = 1;
+const MIN_Z = -10;
+const MAX_Z = 6;
 
-const X_OPACITY_THRESHOLD = MAX_X * 0.2
-const LOWER_X_OPACITY_THRESHOLD = MIN_X + X_OPACITY_THRESHOLD
-const UPPER_X_OPACITY_THRESHOLD = MAX_X - X_OPACITY_THRESHOLD
+const Z_OPACITY_THRESHOLD = MAX_X * 0.2
+const LOWER_Z_OPACITY_THRESHOLD = MIN_Z + Z_OPACITY_THRESHOLD
+const UPPER_Z_OPACITY_THRESHOLD = MAX_Z - Z_OPACITY_THRESHOLD
 
 export class Cloud {
   constructor(freqIndex = 0) {
@@ -21,58 +21,60 @@ export class Cloud {
       utils.randomFloatBetween(MIN_Y, MAX_Y),  
       utils.randomFloatBetween(MIN_Z, MAX_Z),  
     )
-    this.size = utils.randomFloatBetween(3, 6)
+    this.size = utils.randomFloatBetween(7, 10)
     this.alpha = 1
     this.alpha = utils.randomFloatBetween(0.8, 1)
     this.yMax = utils.randomFloatBetween(2, 3)
     this.xRotation = utils.randomFloatBetween(0, utils.toRadians(270))
 
     this.minXIncrement = utils.randomFloatBetween(0.001, 0.001)
-    this.maxXIncrement = utils.randomFloatBetween(0.01, 0.05)
+    this.maxXIncrement = this.minXIncrement + utils.randomFloatBetween(0.0005, 0.001)
     this.minZIncrement = utils.randomFloatBetween(0.001, 0.001)
-    this.maxZIncrement = utils.randomFloatBetween(0.002, 0.005)
+    this.maxZIncrement = utils.randomFloatBetween(0.01, 0.05)
     this.zIncrementSign = utils.randomBool() ? 1 : -1
+
+    this.angle = utils.randomFloatBetween(0, 2 * Math.PI)
   }
  
   update(freq) {
-    if(this.position.x >= MAX_X) {
-      this.position.x = MIN_X
-    } else {
-      this.position.x += utils.remapFreq(this.minXIncrement, this.maxXIncrement, freq)
-    }
-
     if(this.position.z >= MAX_Z) {
-      this.zIncrementSign = -1
-    } else if(this.position.z <= MIN_Z) {
-      this.zIncrementSign = 1
+      this.position.z = MIN_Z
+    } else {
+      this.position.z += utils.remapFreq(this.minZIncrement, this.maxZIncrement, freq)
     }
-    const zIncrement = utils.remapFreq(this.minZIncrement, this.maxZIncrement, freq)
-    this.position.z += zIncrement * this.zIncrementSign
 
+    const xIncrement = utils.remapFreq(this.minXIncrement, this.maxXIncrement, freq)
+    if(this.position.z >= MAX_Z) {
+      this.position.x = utils.randomFloatBetween(MIN_X, MAX_X)
+    } else if(this.position.x >= 0) {
+      this.position.x += xIncrement
+    } else {
+      this.position.x -= xIncrement
+    }
 
     /**
      * opacity
      */
     let positionAlpha = 1;
-    if(this.position.x >= UPPER_X_OPACITY_THRESHOLD) {
+    if(this.position.z >= UPPER_Z_OPACITY_THRESHOLD) {
       positionAlpha = 1 - utils.remap(
-        UPPER_X_OPACITY_THRESHOLD, 
-        MAX_X, 
+        UPPER_Z_OPACITY_THRESHOLD, 
+        MAX_Z, 
         0,
         1, 
-        this.position.x
+        this.position.z
       )
     }
-    if(this.position.x <= LOWER_X_OPACITY_THRESHOLD) {
+    if(this.position.z <= LOWER_Z_OPACITY_THRESHOLD) {
       positionAlpha = utils.remap(
         0,
-        LOWER_X_OPACITY_THRESHOLD, 
+        LOWER_Z_OPACITY_THRESHOLD, 
         0, 
         1, 
-        this.position.x
+        this.position.z
       )
     }
-    const freqAlpha = utils.remapFreq(0, 0.7, freq)
+    const freqAlpha = utils.remapFreq(0.5, 0.7, freq)
     this.alpha = Math.min(freqAlpha, positionAlpha) 
   }
 }

@@ -37,8 +37,7 @@ export class Sketch extends SketchManager {
 
   init() {
     this.setClearColor(0xeeeeee)
-    this.setCameraPos(11, 3, 3)
-    // this.setCameraPos(-3, 0, 8)
+    this.setCameraPos(0, 3, 8)
     this.lookAt(0, 0, 0)
     this.initAudio({
       fftSize: this.fftSize,
@@ -52,10 +51,10 @@ export class Sketch extends SketchManager {
     this.scene.add(this.testGraph.group)
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
-    this.scene.add(this.crosswalk.group)
+    // this.scene.add(this.crosswalk.group)
     this.scene.add(this.clouds.group)
     this.scene.add(this.sand.group)
-    this.scene.add(this.water.group)
+    // this.scene.add(this.water.group)
   }
 
   draw() {
@@ -66,6 +65,7 @@ export class Sketch extends SketchManager {
     this.beatManager.update()
     this.crosswalk.update()
     this.clouds.update()
+    this.water.update()
 
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)

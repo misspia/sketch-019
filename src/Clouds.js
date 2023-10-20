@@ -67,6 +67,7 @@ export class Clouds {
     const size = []
     const alphas = []
     const frequencies = []
+    const angles = []
 
     this.clouds.forEach((cloud) => {
       const freq = this.context.audio.frequencyData[cloud.freqIndex]
@@ -81,11 +82,13 @@ export class Clouds {
       )
       size.push(cloud.size)
       alphas.push(cloud.alpha)
+      angles.push(cloud.angle)
     })
 
     this.geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-    this.geometry.setAttribute('size', new THREE.Float32BufferAttribute(size, 1))
     this.geometry.setAttribute('alpha', new THREE.Float32BufferAttribute(alphas, 1))
+    this.geometry.setAttribute('angle', new THREE.Float32BufferAttribute(size, 1))
+    this.geometry.setAttribute('size', new THREE.Float32BufferAttribute(size, 1))
     this.geometry.setAttribute('freq', new THREE.Float32BufferAttribute(frequencies, 1))
   }
 
