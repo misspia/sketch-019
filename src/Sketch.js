@@ -8,6 +8,7 @@ import { Crosswalk } from './Crosswalk'
 import { Clouds } from './Clouds'
 import { Sand } from './Sand'
 import { Water } from './Water'
+import { Pillars } from './Pillars'
 
 // https://www.pinterest.ca/pin/516295544797671431/
 export class Sketch extends SketchManager {
@@ -33,6 +34,7 @@ export class Sketch extends SketchManager {
     this.clouds = new Clouds(this)
     this.sand = new Sand(this)
     this.water = new Water(this)
+    this.pillars = new Pillars(this)
   }
 
   init() {
@@ -55,6 +57,7 @@ export class Sketch extends SketchManager {
     this.scene.add(this.clouds.group)
     this.scene.add(this.sand.group)
     // this.scene.add(this.water.group)
+    this.scene.add(this.pillars.group)
   }
 
   draw() {
@@ -66,6 +69,7 @@ export class Sketch extends SketchManager {
     this.crosswalk.update()
     this.clouds.update()
     this.water.update()
+    this.pillars.update()
 
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)

@@ -6,7 +6,7 @@ const MAX_X = 3;
 const MIN_Y = 0;
 const MAX_Y = 1;
 const MIN_Z = -10;
-const MAX_Z = 6;
+const MAX_Z = 5;
 
 const Z_OPACITY_THRESHOLD = MAX_X * 0.2
 const LOWER_Z_OPACITY_THRESHOLD = MIN_Z + Z_OPACITY_THRESHOLD

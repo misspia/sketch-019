@@ -48,7 +48,7 @@ export class Clouds {
     const yMax = []
 
     for (let i = 0; i < NUM_CLOUDS; i++) {
-      const freqIndex = utils.randomIntBetween(0, this.context.spectrumStart.midrange)
+      const freqIndex = utils.randomIntBetween(this.context.spectrumStart.midrange, this.context.spectrumStart.highrange)
       const cloud = new Cloud(freqIndex)
       this.clouds.push(cloud)
 

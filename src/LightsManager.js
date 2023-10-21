@@ -5,7 +5,7 @@ export class LightsManager {
   constructor() {
     this.group = new THREE.Group()
 
-    this.ambient = new THREE.AmbientLight(0x000000, 0.5);
+    this.ambient = new THREE.AmbientLight(0xffffff, 1);
     this.group.add(this.ambient)
 
     const directional1 = new THREE.DirectionalLight( 0xffffff, 0.5 );

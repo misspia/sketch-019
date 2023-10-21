@@ -40,9 +40,7 @@ export class SketchManager extends THREE.EventDispatcher {
     this.renderer.shadowMap.enabled = true;
 
     this.scene = new THREE.Scene();
-    if (options.fog) {
-      this.scene.fog = options.fog;
-    }
+      // this.scene.fog = new THREE.Fog(0xffffff, 0, 2);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
