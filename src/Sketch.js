@@ -9,8 +9,10 @@ import { Clouds } from './Clouds'
 import { Sand } from './Sand'
 import { Water } from './Water'
 import { Pillars } from './Pillars'
+import { Stairs } from './Stairs' 
 
 // https://www.pinterest.ca/pin/516295544797671431/
+// https://www.instagram.com/p/CxMVuxpJCRw/
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
     super(canvas, audioElement)
@@ -35,6 +37,7 @@ export class Sketch extends SketchManager {
     this.sand = new Sand(this)
     this.water = new Water(this)
     this.pillars = new Pillars(this)
+    this.stairs = new Stairs(this)
   }
 
   init() {
@@ -54,10 +57,11 @@ export class Sketch extends SketchManager {
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     // this.scene.add(this.crosswalk.group)
-    this.scene.add(this.clouds.group)
-    this.scene.add(this.sand.group)
+    // this.scene.add(this.clouds.group)
+    // this.scene.add(this.sand.group)
     // this.scene.add(this.water.group)
-    this.scene.add(this.pillars.group)
+    // this.scene.add(this.pillars.group)
+    this.scene.add(this.stairs.group)
   }
 
   draw() {
