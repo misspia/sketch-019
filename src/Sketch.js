@@ -13,6 +13,7 @@ import { Stairs } from './Stairs'
 
 // https://www.pinterest.ca/pin/516295544797671431/
 // https://www.instagram.com/p/CxMVuxpJCRw/
+// https://www.youtube.com/watch?v=5yb2N3pnztU
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
     super(canvas, audioElement)
@@ -41,9 +42,8 @@ export class Sketch extends SketchManager {
   }
 
   init() {
-    this.setClearColor(0xeeeeee)
-    this.setCameraPos(0, 3, 8)
-    this.lookAt(0, 0, 0)
+    this.setClearColor(0xee0000)
+    this.setCameraPos(0, 0, 10)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,
