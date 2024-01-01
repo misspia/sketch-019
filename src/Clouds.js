@@ -5,7 +5,7 @@ import { Assets } from './assets'
 import fragmentShader from './shaders/cloud.frag'
 import vertexShader from './shaders/cloud.vert'
 
-const NUM_CLOUDS = 50;
+const NUM_CLOUDS = 30;
 
 const getPointMultiplier = () => {
   return window.innerHeight / (2.0 * Math.tan(0.5 * 60.0 * Math.PI / 180.0))

@@ -10,6 +10,7 @@ import { Sand } from './Sand'
 import { Water } from './Water'
 import { Pillars } from './Pillars'
 import { Stairs } from './Stairs' 
+import { FogPlane } from './FogPlane'
 
 // https://www.pinterest.ca/pin/516295544797671431/
 // https://www.instagram.com/p/CxMVuxpJCRw/
@@ -39,17 +40,18 @@ export class Sketch extends SketchManager {
     this.water = new Water(this)
     this.pillars = new Pillars(this)
     this.stairs = new Stairs(this)
+    this.fog = new FogPlane(this)
   }
 
   init() {
     this.setClearColor(0xee0000)
-    this.setCameraPos(0, 0, 10)
+    this.setCameraPos(0, 0, 7)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,
     });
     this.audio.setSmoothingTimeConstant(0.85);
-    this.audio.volume(1)
+    this.audio.volume(0.2)
 
     this.crosswalk.center()
 
@@ -62,6 +64,7 @@ export class Sketch extends SketchManager {
     // this.scene.add(this.water.group)
     // this.scene.add(this.pillars.group)
     this.scene.add(this.stairs.group)
+    this.scene.add(this.fog.group)
   }
 
   draw() {
@@ -74,6 +77,7 @@ export class Sketch extends SketchManager {
     this.clouds.update()
     this.water.update()
     this.pillars.update()
+    this.fog.update()
 
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)
