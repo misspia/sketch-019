@@ -18,6 +18,7 @@ import { FogPlane } from './FogPlane'
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
     super(canvas, audioElement)
+    this.clock = new THREE.Clock()
     this.audioSrc = audioMeta.url;
     this.fftSize = 256;
     this.numFrequencyNodes = this.fftSize / 2;
@@ -45,13 +46,13 @@ export class Sketch extends SketchManager {
 
   init() {
     this.setClearColor(0xee0000)
-    this.setCameraPos(0, 0, 7)
+    this.setCameraPos(0, 0, 8)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,
     });
     this.audio.setSmoothingTimeConstant(0.85);
-    this.audio.volume(0.2)
+    this.audio.volume(1)
 
     this.crosswalk.center()
 
@@ -81,7 +82,6 @@ export class Sketch extends SketchManager {
 
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)
-    
     requestAnimationFrame(() => this.draw())
   }
 }

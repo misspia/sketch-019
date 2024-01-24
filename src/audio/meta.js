@@ -21,7 +21,9 @@
 // import testAudio from './Burn It All Down.mp3';
 // import testAudio from './Breathe.mp3';
 import testAudio from './specialz.mp3';
-// import testAudio from './.mp3';
+// import testAudio from './Dont Go Insane.mp3';
+// import testAudio from './Scaredy Cat.mp3';
+// import testAudio from './Nerves.mp3';
 // import testAudio from './.mp3';
 
 export const BASE_URL = 'https://raw.githubusercontent.com/misspia/assets/master/audio/';
