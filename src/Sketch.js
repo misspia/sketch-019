@@ -11,6 +11,7 @@ import { Water } from './Water'
 import { Pillars } from './Pillars'
 import { Stairs } from './Stairs' 
 import { FogPlane } from './FogPlane'
+import { Vortex } from './Vortex'
 
 // https://www.pinterest.ca/pin/516295544797671431/
 // https://www.instagram.com/p/CxMVuxpJCRw/
@@ -42,11 +43,12 @@ export class Sketch extends SketchManager {
     this.pillars = new Pillars(this)
     this.stairs = new Stairs(this)
     this.fog = new FogPlane(this)
+    this.vortex = new Vortex(this)
   }
 
   init() {
     this.setClearColor(0xee0000)
-    this.setCameraPos(0, 0, 8)
+    this.setCameraPos(0, 0, 20)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,
@@ -66,6 +68,10 @@ export class Sketch extends SketchManager {
     // this.scene.add(this.pillars.group)
     this.scene.add(this.stairs.group)
     this.scene.add(this.fog.group)
+    this.scene.add(this.vortex.group)
+
+    this.stairs.position.set(2, -10, 0)
+    this.vortex.position.set(0, 7, 0)
   }
 
   draw() {
@@ -79,7 +85,7 @@ export class Sketch extends SketchManager {
     this.water.update()
     this.pillars.update()
     this.fog.update()
-
+    this.vortex.update()
 
     this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)
     requestAnimationFrame(() => this.draw())

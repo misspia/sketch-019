@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils'
 import { utils } from './utils'
 
-const NUM_STEPS = 33
+const NUM_STEPS = 43
 const SWITCH_DIRECTION_THRESHOLD = 10
 const CURVE_THRESHHOLD = 3
 const MIN_STEP_ROTATION = 0;
