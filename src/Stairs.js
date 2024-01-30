@@ -32,6 +32,7 @@ export class Stairs {
           })
         this.group = new THREE.Mesh(this.geometry, this.material)
         this.group.position.set(0, -5, 0)
+        this.bbox = new THREE.Box3().setFromObject(this.group)
     }
 
     get position() {    

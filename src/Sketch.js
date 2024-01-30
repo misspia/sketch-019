@@ -16,6 +16,8 @@ import { Vortex } from './Vortex'
 // https://www.pinterest.ca/pin/516295544797671431/
 // https://www.instagram.com/p/CxMVuxpJCRw/
 // https://www.youtube.com/watch?v=5yb2N3pnztU
+// https://www.instagram.com/p/C2Iu-qmtw8x/
+
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
     super(canvas, audioElement)
@@ -58,7 +60,7 @@ export class Sketch extends SketchManager {
 
     this.crosswalk.center()
 
-    this.scene.add(this.testGraph.group)
+    // this.scene.add(this.testGraph.group)
     this.scene.add(this.lights.group)
     // this.scene.add(this.block.group)
     // this.scene.add(this.crosswalk.group)
@@ -71,7 +73,8 @@ export class Sketch extends SketchManager {
     this.scene.add(this.vortex.group)
 
     this.stairs.position.set(2, -10, 0)
-    this.vortex.position.set(0, 7, 0)
+    this.vortex.position.set(0, this.stairs.bbox.max.y + 1, this.stairs.bbox.min.z)
+
   }
 
   draw() {
