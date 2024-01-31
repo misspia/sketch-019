@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { VortexParticle } from './VortexParticle'
 import { utils } from './utils'
+import { Assets } from './assets'
+import fragmentShader from './shaders/vortex.frag'
+import vertexShader from './shaders/vortex.vert'
 
 const NUM_PARTICLES = 50;
 
@@ -16,7 +19,24 @@ export class VortexLine {
         this.curve = new THREE.SplineCurve(points);
         this.createParticles();
 
-        this.group = new THREE.Group();
+        this.geometry = new THREE.BufferGeometry()
+        this.material = new THREE.RawShaderMaterial({
+            depthTest: true,
+            depthWrite: false,
+            transparent: true,
+            vertexColors: true,
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+              diffuseTexture: {
+                value: new THREE.TextureLoader().load(Assets.cloudTexture),
+              },
+              pointMultiplier: {
+                value: getPointMultiplier()
+              }
+            },
+          })
+          this.group = new THREE.Points(this.geometry, this.material)
     }
 
     get position() {
@@ -32,9 +52,21 @@ export class VortexLine {
     }
 
     update() {
+        const positions = []
+        const alphas = [];
+        const frequencies = []
         this.particles.forEach(particle => {
             const freq = this.context.audio.frequencyData[particle.freqIndex]
             particle.update(freq)
-        })
+
+            positions.push(particle.position.x, particle.position.y, particle.position.z)
+            alphas.push(particle.alpha)
+            frequencies.push(freq)
+
+        });
+
+        this.geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+        this.geometry.setAttribute('alpha', new THREE.Float32BufferAttribute(alphas, 1))
+        this.geometry.setAttribute('freq', new THREE.Float32BufferAttribute(frequencies, 1))
     }
 }

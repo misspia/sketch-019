@@ -9,8 +9,6 @@ const MAX_RADIUS = 10;
 export class VortexParticle {
     constructor(freqIndex, curve) {
         this.curve = curve
-        console.debug(this.curve.getPointAt(0.5))
-
         this.freqIndex = freqIndex;
         this.position = new THREE.Vector3()
         this.zMinVelocity = utils.randomFloatBetween(0.01, 0.05)
@@ -36,12 +34,6 @@ export class VortexParticle {
       }
 
     update(freq) {
-        const zIncrement = utils.remapFreq(this.zMinVelocity, this.zMaxVelocity, freq)
-        if(this.position.z <= MIN_Z) {
-            this.position.z = MAX_Z;
-        } else {
-            this.position.z -= zIncrement;
-        }
         this.angle += utils.remapFreq(this.minAngleIncrement, this.maxAngleIncrement, freq)
         this.updateCirclePos()
 
