@@ -16,7 +16,7 @@ export class VortexLine {
         this.context = context;
         this.particles = [];
 
-        this.curve = new THREE.SplineCurve(points);
+        this.curve = new THREE.CatmullRomCurve3(points);
         this.createParticles();
 
         this.geometry = new THREE.BufferGeometry()
@@ -41,6 +41,10 @@ export class VortexLine {
 
     get position() {
         return this.group.position
+    }
+
+    get rotation() {
+        return this.group.rotation
     }
 
     createParticles() {
