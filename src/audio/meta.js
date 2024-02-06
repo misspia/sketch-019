@@ -9,7 +9,7 @@
 // import testAudio from './The Chainsmokers - Side Effects (feat. Emily Warren) [Mielo Remix].mp3';
 // import testAudio from './Give It Up.mp3';
 // import testAudio from './Save Room For Us (Remix).mp3';
-import testAudio from './Playground.mp3';
+// import testAudio from './Playground.mp3';
 // import testAudio from './Guns for Hire.mp3';
 // import testAudio from './The Boy Who Shattered Time.mp3';
 // import testAudio from './summer nights.mp3';
@@ -20,7 +20,7 @@ import testAudio from './Playground.mp3';
 // import testAudio from './Showed Me (How I Fell In Love With You).mp3';
 // import testAudio from './Burn It All Down.mp3';
 // import testAudio from './Breathe.mp3';
-// import testAudio from './specialz.mp3';
+import testAudio from './specialz.mp3';
 // import testAudio from './Im Not Sorry.mp3';
 // import testAudio from './Dont Go Insane.mp3';
 // import testAudio from './Scaredy Cat.mp3';

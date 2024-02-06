@@ -51,6 +51,8 @@ export class Sketch extends SketchManager {
   init() {
     this.setClearColor(0xee0000)
     this.setCameraPos(0, 0, 20)
+    // this.setCameraPos(0, 97, -40)
+    // this.controls.target.set(0, 0, -40)
     this.initAudio({
       fftSize: this.fftSize,
       dataLength: this.numFrequencyNodes,

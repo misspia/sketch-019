@@ -112,8 +112,8 @@ export class SketchManager extends THREE.EventDispatcher {
   setCameraPos(x, y, z) {
     this.camera.position.set(x, y, z);
   }
-  lookAt(x, y, z) {
-    this.camera.lookAt(x, y, z);
+  lookAt(vector) {
+    this.camera.lookAt(vector);
   }
   setClearColor(hex) {
     this.renderer.setClearColor(hex);
