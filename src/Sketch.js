@@ -3,20 +3,8 @@ import { TestGraph } from './TestGraph'
 import { SketchManager } from './SketchManager'
 import { audioMeta, BeatManager } from './audio'
 import { LightsManager } from './LightsManager'
-import { Block } from './Block'
-import { Crosswalk } from './Crosswalk'
 import { Clouds } from './Clouds'
-import { Sand } from './Sand'
-import { Water } from './Water'
-import { Pillars } from './Pillars'
-import { Stairs } from './Stairs' 
-import { FogPlane } from './FogPlane'
-import { Vortex } from './Vortex'
-
-// https://www.pinterest.ca/pin/516295544797671431/
-// https://www.instagram.com/p/CxMVuxpJCRw/
-// https://www.youtube.com/watch?v=5yb2N3pnztU
-// https://www.instagram.com/p/C2Iu-qmtw8x/
+import { Frame } from './Frame'
 
 export class Sketch extends SketchManager {
   constructor(canvas, audioElement) {
@@ -37,62 +25,37 @@ export class Sketch extends SketchManager {
     })
     this.beatManager = new BeatManager(this);
     this.lights = new LightsManager()
-    this.block = new Block()
-    this.crosswalk = new Crosswalk(this)
     this.clouds = new Clouds(this)
-    this.sand = new Sand(this)
-    this.water = new Water(this)
-    this.pillars = new Pillars(this)
-    this.stairs = new Stairs(this)
-    this.fog = new FogPlane(this)
-    this.vortex = new Vortex(this)
+    this.frame = new Frame(this)
   }
 
   init() {
-    this.setClearColor(0xee0000)
-    this.setCameraPos(0, 0, 20)
-    // this.setCameraPos(0, 97, -40)
-    // this.controls.target.set(0, 0, -40)
-    this.initAudio({
-      fftSize: this.fftSize,
-      dataLength: this.numFrequencyNodes,
-    });
-    this.audio.setSmoothingTimeConstant(0.85);
-    this.audio.volume(1)
+    this.setClearColor(0x000000)
+    this.setCameraPos(0, 0, 10)
 
-    this.crosswalk.center()
-
+    // this.initAudio({
+    //   fftSize: this.fftSize,
+    //   dataLength: this.numFrequencyNodes,
+    // });
+    // this.audio.setSmoothingTimeConstant(0.85);
+    // this.audio.volume(1)
     // this.scene.add(this.testGraph.group)
-    this.scene.add(this.lights.group)
-    // this.scene.add(this.block.group)
-    // this.scene.add(this.crosswalk.group)
+
     // this.scene.add(this.clouds.group)
-    // this.scene.add(this.sand.group)
-    // this.scene.add(this.water.group)
-    // this.scene.add(this.pillars.group)
-    this.scene.add(this.stairs.group)
-    this.scene.add(this.fog.group)
-    this.scene.add(this.vortex.group)
-
-    this.stairs.position.set(2, -10, 0)
-    this.vortex.position.set(0, this.stairs.bbox.max.y + 1, this.stairs.bbox.min.z)
-
+    this.scene.add(this.frame.group);
   }
 
   draw() {
     this.renderer.render(this.scene, this.camera)
     this.controls.update()
 
-    this.audio.getByteFrequencyData();
-    this.beatManager.update()
-    this.crosswalk.update()
-    this.clouds.update()
-    this.water.update()
-    this.pillars.update()
-    this.fog.update()
-    this.vortex.update()
+    // this.audio.getByteFrequencyData();
+    // this.beatManager.update()
+    // this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)
 
-    this.testGraph.update(this.audio.frequencyData, this.beatManager.bassAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages, this.beatManager.midrangeAverages, this.beatManager.highrangeAverages)
+    // this.clouds.update()
+    this.frame.update()
+
     requestAnimationFrame(() => this.draw())
   }
 }
